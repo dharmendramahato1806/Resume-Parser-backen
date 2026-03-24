@@ -29,6 +29,11 @@ app.use('/api/', limiter);
 // Routes
 app.use('/api/interview', interviewRoutes);
 
+// Simple root route
+app.get('/', (req, res) => {
+  res.send('Welcome to the InterviewAI server!');
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
@@ -45,6 +50,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`✅ InterviewAI server running on http://localhost:${PORT}`);
 });
